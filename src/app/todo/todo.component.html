@@ -1,0 +1,6 @@
+<form (ngSubmit)="addTodo()">
+    <div class="form-group">
+        <label for="title">Add Todo</label>
+        <input type="text" class="form-control" placeholder="Todo title" [(ngModel)]="todo.title" name="title">
+    </div>
+</form>

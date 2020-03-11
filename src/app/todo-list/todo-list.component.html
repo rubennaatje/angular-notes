@@ -1,0 +1,7 @@
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of todoList">
+        <input type="checkbox" (change)="invertTodoStatus(item.id)" [checked]="item.done" (ngModel)="item.done" (name)="item.title">
+        <label [ngClass]="{'line-through': item.done}" (for)="item.title">{{item.title}}</label>
+        <input type = "button" value="Delete" class="btn btn-danger float-right" (click)="deleteTodo(item)">
+    </li>
+</ul>

@@ -1,6 +1,9 @@
-<form (ngSubmit)="addTodo()">
+<form (ngSubmit)="addTodo()" [formGroup]="todoForm">
     <div class="form-group">
         <label for="title">Add Todo</label>
-        <input type="text" class="form-control" placeholder="Todo title" [(ngModel)]="todo.title" name="title">
+        <div *ngIf="!todoForm.controls.title.valid  && (todoForm.controls.title.dirty || submitAttempt)" class="alert alert-danger" role="alert">
+            The todo is not valid.
+        </div>
+        <input type="text" class="form-control" formControlName="title" placeholder="Todo title" [(ngModel)]="todo.title" name="title">
     </div>
 </form>

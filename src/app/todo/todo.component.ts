@@ -15,14 +15,18 @@ export class TodoComponent implements OnInit {
   @Input() todoList: Array<Todo> = [];
 
   todoForm: FormGroup;
+  submitAttempt: boolean;
   todo: Todo;
 
   constructor(private todoService: TodoService) { }
 
   addTodo(){
-    this.todoService.addTodo(this.todo).subscribe(x => console.log(x));
-    this.todoList.push(this.todo);
-    this.todo = new Todo();
+    this.submitAttempt = true;
+
+    if(this.todoForm.valid){
+      this.todoService.addTodo(this.todo).subscribe(x => console.log(x));
+      this.todoList.push(this.todo);
+    }
   }
 
 
@@ -32,7 +36,6 @@ export class TodoComponent implements OnInit {
     this.todoForm = new FormGroup({
       'title': new FormControl(this.todo.title, [
         Validators.required,
-        Validators.minLength(5),
       ])
     });
   }
